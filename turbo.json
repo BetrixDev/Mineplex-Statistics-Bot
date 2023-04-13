@@ -4,9 +4,8 @@
   "globalEnv": ["BOT_TOKEN"],
   "pipeline": {
     "build": {
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": ["build/**"]
     },
-    "lint": {},
     "dev": {
       "cache": false,
       "persistent": true

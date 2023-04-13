@@ -7,25 +7,26 @@
   "main": "build/index.js",
   "scripts": {
     "build": "tsc",
-    "build:changelog": "npx @discordx/changelog --src src",
-    "dev": "ts-node-esm src/index.ts",
-    "start": "node build/index.js",
-    "watch": "nodemon --exec ts-node-esm src/index.ts"
+    "dev": "cross-env NODE_ENV=development ts-node-esm src/index.ts",
+    "start": "cross-env NODE_ENV=production node build/index.js"
   },
   "dependencies": {
     "@discordx/importer": "^1.1.10",
     "@discordx/pagination": "^3.4.0",
     "@trpc/client": "^10.19.1",
     "backend": "workspace:*",
+    "cross-env": "^7.0.3",
     "discord.js": "^14.7.1",
     "discordx": "^11.7.0",
     "dotenv": "^16.0.3",
     "isomorphic-fetch": "^3.0.0",
+    "node-schedule": "^2.1.1",
     "table": "^6.8.1",
     "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/node": "^18.13.0",
+    "@types/node-schedule": "^2.1.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.8.4",
     "ts-node": "^10.9.1",

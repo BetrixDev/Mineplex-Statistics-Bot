@@ -1,7 +1,9 @@
 import { dirname, importx } from "@discordx/importer";
-import type { Interaction } from "discord.js";
+import { ActivityType, Interaction } from "discord.js";
 import { Client } from "discordx";
 import env from "./env.js";
+import { trpc } from "./trpc.js";
+import { scheduleJob } from "node-schedule";
 
 export const bot = new Client({
   // To use only guild command
@@ -30,6 +32,30 @@ bot.once("ready", async () => {
   //  );
 
   console.log("Bot started");
+
+  scheduleJob("Update Presence", "*/15 * * * *", async () => {
+    const { online, playerCount } = await trpc.playerCount.query();
+
+    if (!online) {
+      bot.user?.setPresence({
+        activities: [
+          {
+            type: ActivityType.Watching,
+            name: "Mineplex is offline",
+          },
+        ],
+      });
+    } else {
+      bot.user?.setPresence({
+        activities: [
+          {
+            type: ActivityType.Watching,
+            name: `Mineplex player count: ${playerCount}`,
+          },
+        ],
+      });
+    }
+  });
 });
 
 bot.on("interactionCreate", (interaction: Interaction) => {
