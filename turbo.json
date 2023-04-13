@@ -1,6 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
+  "globalEnv": ["BOT_TOKEN"],
   "pipeline": {
     "build": {
       "outputs": [".next/**", "!.next/cache/**"]
