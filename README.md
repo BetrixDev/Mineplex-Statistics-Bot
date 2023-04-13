@@ -13,3 +13,4 @@ This project is a [Turborepo](https://turbo.build/repo) monorepo which consists 
 - Add cache between API and scrapers
 - Prepare for production
 - Add player stats command
+- Add better error logging and handling
