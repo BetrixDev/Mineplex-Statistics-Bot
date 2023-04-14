@@ -1,7 +1,6 @@
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import express from "express";
 import { appRouter } from "./trpc.js";
-import NodeCache from "node-cache";
 
 async function main() {
   const app = express();
@@ -12,11 +11,7 @@ async function main() {
     "/trpc",
     createExpressMiddleware({
       router: appRouter,
-      createContext: () => {
-        return {
-          cache: new NodeCache({ stdTTL: 60 * 15 }),
-        };
-      },
+      createContext: () => ({}),
     })
   );
   app.listen(3000);
