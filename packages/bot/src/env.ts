@@ -18,7 +18,7 @@ const EnvSchema = z.discriminatedUnion("NODE_ENV", [
 const parsed = EnvSchema.safeParse(process.env);
 
 if (!parsed.success) {
-  throw "Bad enviroment variables";
+  throw Error("Bad enviroment variables");
 }
 
 export default parsed.data;
